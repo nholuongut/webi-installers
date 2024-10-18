@@ -1,0 +1,45 @@
+{
+  "name": "@webinstall/webi-installers",
+  "private": true,
+  "version": "1.1.1",
+  "description": "webinstall script repository",
+  "main": "_webi/",
+  "type": "commonjs",
+  "scripts": {
+    "bump": "npm version -m \"chore(release): bump to v%s\"",
+    "fmt": "npm run prettier && npm run shfmt && npm run pwsh-fmt",
+    "lint": "npm run shellcheck && npm run jshint && npm run pwsh-lint",
+    "prepare": "npm run tooling-init && npm run git-hooks-init",
+    "test": "node _webi/test.js ./node/",
+    "----": "------------------------------------",
+    "git-hooks-init": "node ./_scripts/git-hooks-init.js",
+    "jshint": "npx -p jshint@2.x -- jshint -c ./.jshintrc --exclude 'node_modules/**/*' */*.js */*/*.js",
+    "prettier": "npx -p prettier@3.x -- prettier -w '**/*.{js,md,html}'",
+    "pwsh-fmt": "pwsh ./_scripts/pwsh-fmt.ps1",
+    "pwsh-lint": "pwsh ./_scripts/pwsh-lint.ps1",
+    "shellcheck": "shellcheck -s sh -S style --exclude=SC2154,SC2034 */*.sh",
+    "shfmt": "shfmt -w -i 4 -sr -ci -s ./",
+    "tooling-init": "node ./_scripts/tooling-init.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webinstall/webi-installers.git"
+  },
+  "keywords": [
+    "webinstall",
+    "brew",
+    "apt",
+    "chocolately"
+  ],
+  "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/webinstall/webi-installers/issues"
+  },
+  "homepage": "https://github.com/webinstall/webi-installers#readme",
+  "dependencies": {
+    "@root/request": "^1.9.2",
+    "dotenv": "^8.2.0",
+    "marked": "^4.1.1"
+  }
+}
